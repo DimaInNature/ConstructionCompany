@@ -6,9 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Command\" />
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
 </Project>
