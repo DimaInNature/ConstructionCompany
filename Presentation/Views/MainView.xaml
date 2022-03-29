@@ -1,0 +1,404 @@
+﻿<Window
+    x:Class="Presentation.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Presentation.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ThisWindow"
+    Title="ЮгСтрой - Главная"
+    Width="800"
+    Height="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Triggers>
+
+        <!--#region Left Menu-->
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuShowButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuOpen}" />
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuCloseButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Home-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="HomeMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Constructions-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ConstructionsMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Users-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="UsersMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Workers-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="WorkersMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Clients-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ClientsMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Products-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ProductsMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region Reports-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ReportsMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+    </Window.Triggers>
+
+    <Border
+        CornerRadius="20"
+        MouseDown="WindowDragMove"
+        Style="{DynamicResource BorderStyle}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <!--#region Menu-->
+
+            <Grid Grid.Row="0" Panel.ZIndex="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        x:Name="LeftMenuShowButton"
+                        Grid.Column="0"
+                        Width="45"
+                        Height="45"
+                        Margin="20,5,0,0"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource MenuButtonShow}"
+                        Visibility="Visible" />
+
+                </Grid>
+
+                <Button
+                    x:Name="CloseApplicationButton"
+                    Grid.Column="2"
+                    Width="35"
+                    Height="35"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    Click="CloseApplicationButton_Click"
+                    Style="{DynamicResource ControlButtonCloseStyle}"
+                    Visibility="Visible" />
+
+            </Grid>
+
+            <!--#region Left Menu-->
+
+            <Grid
+                x:Name="LeftMenu"
+                Grid.RowSpan="2"
+                Width="0"
+                HorizontalAlignment="Left"
+                Panel.ZIndex="3"
+                Background="White"
+                Row="0">
+
+                <Grid.Clip>
+
+                    <RectangleGeometry
+                        RadiusX="20"
+                        RadiusY="20"
+                        Rect="0,0,800,600" />
+
+                </Grid.Clip>
+
+                <StackPanel>
+
+                    <RadioButton
+                        x:Name="HomeMenuRadioButton"
+                        Grid.Row="1"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,0,0"
+                        Panel.ZIndex="3"
+                        Click="HomeMenuRadioButton_Click"
+                        Command="{Binding ShowHomePageCommand}"
+                        Content="Главная"
+                        IsChecked="True"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <RadioButton
+                        x:Name="ConstructionsMenuRadioButton"
+                        Grid.Row="2"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="ConstructionsMenuRadioButton_Click"
+                        Command="{Binding ShowConstructionsPageCommand}"
+                        Content="Работы"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <RadioButton
+                        x:Name="WorkersMenuRadioButton"
+                        Grid.Row="4"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="WorkersMenuRadioButton_Click"
+                        Command="{Binding ShowWorkersPageCommand}"
+                        Content="Рабочие"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <RadioButton
+                        x:Name="ClientsMenuRadioButton"
+                        Grid.Row="5"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="ClientsMenuRadioButton_Click"
+                        Command="{Binding ShowClientsPageCommand}"
+                        Content="Клиенты"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <RadioButton
+                        x:Name="ProductsMenuRadioButton"
+                        Grid.Row="6"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="ProductsMenuRadioButton_Click"
+                        Command="{Binding ShowProductsPageCommand}"
+                        Content="Склад"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <RadioButton
+                        x:Name="ReportsMenuRadioButton"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="ReportsMenuRadioButton_Click"
+                        Command="{Binding ShowReportsPageCommand}"
+                        Content="Отчёт"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <RadioButton
+                        x:Name="UsersMenuRadioButton"
+                        Grid.Row="3"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="UsersMenuRadioButton_Click"
+                        Command="{Binding ShowUsersPageCommand}"
+                        Content="Пользователи"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                    <Button
+                        x:Name="LogoutMenuButton"
+                        Grid.Row="7"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,0,0"
+                        Panel.ZIndex="3"
+                        Click="LogoutMenuButton_Click"
+                        CommandParameter="{Binding ElementName=ThisWindow}"
+                        Content="Выйти"
+                        Style="{DynamicResource MenuUserExitButton}" />
+
+                </StackPanel>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <Border
+                Name="MenuBorder"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Panel.ZIndex="1"
+                Background="{DynamicResource AccentColor}"
+                CornerRadius="20"
+                IsHitTestVisible="False"
+                Opacity="0.2"
+                Visibility="Collapsed" />
+
+            <Button
+                x:Name="LeftMenuCloseButton"
+                Grid.Row="0"
+                Width="30"
+                Height="30"
+                Margin="200,-20,0,0"
+                HorizontalAlignment="Left"
+                Panel.ZIndex="1"
+                Style="{DynamicResource MenuButtonClose}"
+                Visibility="Collapsed" />
+
+            <!--#endregion-->
+
+            <Grid Grid.Row="1">
+
+                <Border
+                    Name="WorkAreaBorder"
+                    Panel.ZIndex="-1"
+                    Background="{DynamicResource ThirdRateColor}"
+                    CornerRadius="20">
+
+                    <Grid Visibility="{Binding MenuIsVisible, Mode=TwoWay}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button
+                            x:Name="ConstructionsButton"
+                            Grid.Row="0"
+                            Margin="15"
+                            Click="ConstructionsButton_Click"
+                            Command="{Binding ShowConstructionsPageCommand}"
+                            Content="Работы"
+                            FontSize="70"
+                            Style="{DynamicResource HomeButtonStyle}" />
+
+                        <Grid Row="1">
+
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                Orientation="Horizontal">
+
+                                <Button
+                                    x:Name="WorkersButton"
+                                    Width="138"
+                                    Margin="15,0,10,15"
+                                    Click="WorkersButton_Click"
+                                    Command="{Binding ShowWorkersPageCommand}"
+                                    Content="Рабочие"
+                                    FontSize="30"
+                                    Style="{DynamicResource HomeButtonStyle}" />
+
+                                <Button
+                                    x:Name="ClientsButton"
+                                    Width="138"
+                                    Margin="10,0,10,15"
+                                    Click="ClientsButton_Click"
+                                    Command="{Binding ShowClientsPageCommand}"
+                                    Content="Клиенты"
+                                    FontSize="27"
+                                    Style="{DynamicResource HomeButtonStyle}" />
+
+                                <Button
+                                    x:Name="ProductsButton"
+                                    Width="138"
+                                    Margin="10,0,10,15"
+                                    Click="ProductsButton_Click"
+                                    Command="{Binding ShowProductsPageCommand}"
+                                    Content="Склад"
+                                    FontSize="27"
+                                    Style="{DynamicResource HomeButtonStyle}" />
+
+                                <Button
+                                    x:Name="ReportsButton"
+                                    Width="138"
+                                    Margin="10,0,10,15"
+                                    Click="ReportsButton_Click"
+                                    Command="{Binding ShowReportsPageCommand}"
+                                    Content="Отчёт"
+                                    FontSize="27"
+                                    Style="{DynamicResource HomeButtonStyle}" />
+
+                                <Button
+                                    x:Name="UsersButton"
+                                    Width="138"
+                                    Margin="10,0,15,15"
+                                    Click="UsersButton_Click"
+                                    Command="{Binding ShowUsersPageCommand}"
+                                    Content="Пользователи"
+                                    FontSize="20"
+                                    Style="{DynamicResource HomeButtonStyle}" />
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+            <Frame
+                x:Name="MainFrame"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10"
+                Panel.ZIndex="0"
+                Content="{Binding FrameSource, Mode=TwoWay}"
+                NavigationUIVisibility="Hidden"
+                Visibility="{Binding FrameVisibility, Mode=TwoWay}" />
+
+        </Grid>
+
+    </Border>
+
+</Window>

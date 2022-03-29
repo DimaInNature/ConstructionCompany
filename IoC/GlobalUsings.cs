@@ -1,1 +1,12 @@
-﻿
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using Services;
+global using Services.Abstract.Clients;
+global using Services.Abstract.Constructions;
+global using Services.Abstract.Products;
+global using Services.Abstract.Users;
+global using Services.Abstract.Workers;
+global using Services.Clients;
+global using Services.Constructions;
+global using Services.Products;
+global using Services.Users;
+global using Services.Workers;
